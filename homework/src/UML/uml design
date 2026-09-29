@@ -1,0 +1,84 @@
+Supplier
+--------------------------
+- supplierId : String
+- name : String
+- email : String
+--------------------------
++ Supplier(id, name, email)
++ getSupplierId() : string
++ getName : String
++ getEmail : String
+---------------------------
+---------------------------
+      Aggregation
+Product o---> Supplier
+  (1)           (1)
+---------------------------
+---------------------------
+Product
+--------------------------
+- productId : String
+- name : String
+- price : Double
+- supplier : String
+--------------------------
++ Product(id, name, price, supplier)
++ getProductId() : String
++ getName() : String
++ getPrice() : double
++ getSupplier() : Supplier
+---------------------------
+
+---------------------------
+      Association
+InventoryItem ---> Product
+      (1)           (1)
+---------------------------
+
+--------------------------
+ InventoryItem
+--------------------------
+- product : Product
+- quantity : int
+- reorderLevel : int
+--------------------------
++ InventoryItem(product, qty, reorder)
++ getProduct() : Product
++ getQuantity() : int
++ getReorderLevel() : int
++ addStock(amount) : boolean
++ removeStock(amount) : boolean
++ needsReorder() : boolean
+--------------------------
+---------------------------
+      Composition
+Warehouse <>---> InventoryItem
+  (1)           (0.*)
+---------------------------
+
+---------------------------
+ Warehouse
+--------------------------
+- name : String
+- inventory : List<InventoryItem>
+--------------------------
++ Warehouse(name)
++ getName() : String
++ getInventory() : List<InventoryItem>
++ addProduct(product, qty, reorder) : boolean
++ findItem(productId) : InventoryItem
++ addStock(productId, amount) : boolean
++ removeStock(productId, amount) : boolean
++ displayInventory() : void
+------------------------------
+
+--------------------------
+ InventoryDemo
+--------------------------
++ main(args : String[]) : void
+--------------------------
+---------------------------
+      Dependency
+InventoryDemo ---> All classes
+
+---------------------------
