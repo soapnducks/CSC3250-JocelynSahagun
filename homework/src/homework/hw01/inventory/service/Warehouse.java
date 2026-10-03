@@ -7,14 +7,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-/**
- * Represents a warehouse that owns and manages its inventory items.
- *
- * HW1 design focus:
- * - The internal inventory list must remain private.
- * - Warehouse.addProduct(...) creates InventoryItem objects.
- * - Outside code should not directly modify the inventory list.
- */
 public class Warehouse {
 
     private String name;
@@ -49,13 +41,7 @@ public class Warehouse {
             return true;
     }
 
-    /**
-     * Finds an inventory item by product ID.
-     *
-     * Contract:
-     * - return the matching InventoryItem when found;
-     * - return null when no match exists.
-     */
+
     public InventoryItem findItem(String productId) {
         for (InventoryItem item : inventory) {
             if (item.getProduct().getProductId().equals(productId)) {
@@ -65,47 +51,31 @@ public class Warehouse {
         return null;
     }
 
-    /**
-     * Adds stock to an existing product.
-     *
-     * Contract:
-     * - if productId does not exist, return false;
-     * - otherwise delegate the work to InventoryItem.addStock(amount).
-     */
     public boolean addStock(String productId, int amount) {
         InventoryItem item = findItem(productId);
-        return item != null && item.addStock(amount);
+        if (item == null) {
+            return false;
+        }
+        return item.addStock(amount);
 }
-    /**
-     * Removes stock from an existing product.
-     *
-     * Contract:
-     * - if productId does not exist, return false;
-     * - otherwise delegate the work to InventoryItem.removeStock(amount).
-     */
+
     public boolean removeStock(String productId, int amount) {
         InventoryItem item = findItem(productId);
-        return item != null && item.removeStock(amount);
+        if (item == null) {
+            return false;
+        }
+        return item.removeStock(amount);
     }
 
-    /**
-     * Displays each product in the warehouse.
-     *
-     * Minimum information to print for each item:
-     * - product ID
-     * - product name
-     * - quantity
-     * - reorder level
-     * - whether reorder is needed
-     */
+
     public void displayInventory() {
         System.out.println("Inventory for " + name + ":");
         for (InventoryItem item : inventory) {
-            System.out.println(item.getProduct().getName() +
+            System.out.println(item.getProduct().getProductId() +
+                    " - " + item.getProduct().getName() +
                     " | Qty: " + item.getQuantity() +
                     " | Reorder Level: " + item.getReorderLevel() +
                     " | Needs Reorder? " + item.needsReorder());
         }
-        // TODO: loop through inventory and print the required information.
     }
 }

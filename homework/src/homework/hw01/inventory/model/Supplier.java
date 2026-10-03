@@ -1,13 +1,6 @@
 package homework.hw01.inventory.model;
 
-/**
- * Represents a supplier that can provide one or more products.
- *
- * HW1 focus:
- * - Encapsulation: keep fields private.
- * - Constructor: initialize the object's state.
- * - Accessors: provide read-only access through getters.
- */
+
 public class Supplier {
 
     private String supplierId;

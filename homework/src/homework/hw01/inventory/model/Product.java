@@ -1,12 +1,5 @@
 package homework.hw01.inventory.model;
 
-/**
- * Represents a product sold or stored by the warehouse.
- *
- * A Product refers to a Supplier. The Supplier can exist independently
- * of this Product, so this relationship is used as the aggregation /
- * association example in HW1.
- */
 public class Product {
 
     private String productId;
